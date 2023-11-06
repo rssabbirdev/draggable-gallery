@@ -16,53 +16,8 @@ import {
 import GalleryItem from '../GalleryItem/GalleryItem';
 
 // eslint-disable-next-line react/prop-types
-export default function GalleryContainer({ setSelectedItems, selectedItems }) {
-	const [items, setItems] = useState([
-		{
-			id: '01',
-			image_src: 'images/image-1.webp',
-		},
-		{
-			id: '02',
-			image_src: 'images/image-2.webp',
-		},
-		{
-			id: '03',
-			image_src: 'images/image-3.webp',
-		},
-		{
-			id: '04',
-			image_src: 'images/image-4.webp',
-		},
-		{
-			id: '05',
-			image_src: 'images/image-5.webp',
-		},
-		{
-			id: '06',
-			image_src: 'images/image-6.webp',
-		},
-		{
-			id: '07',
-			image_src: 'images/image-7.webp',
-		},
-		{
-			id: '08',
-			image_src: 'images/image-8.webp',
-		},
-		{
-			id: '09',
-			image_src: 'images/image-9.webp',
-		},
-		{
-			id: '10',
-			image_src: 'images/image-10.jpeg',
-		},
-		{
-			id: '11',
-			image_src: 'images/image-11.jpeg',
-		},
-	]);
+export default function GalleryContainer({ setSelectedItems, selectedItems, items,setItems }) {
+	
 	// with useMemo we are separate ItemIds from array of objects
 	const itemIds = useMemo(() => items.map((item) => item.id), [items]);
 

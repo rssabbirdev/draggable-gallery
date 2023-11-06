@@ -1,5 +1,12 @@
 import './Navbar.css';
-export default function Navbar({ selectedItems, setSelectedItems }) {
+export default function Navbar({ selectedItems, setSelectedItems, setItems }) {
+	const handleDelete = () => {
+		setItems((items) => {
+			const leftItems = items.filter((item) => !selectedItems.includes(item.id));
+			return leftItems;
+		});
+		setSelectedItems([])
+	};
 	return (
 		<div
 			style={{
@@ -15,9 +22,18 @@ export default function Navbar({ selectedItems, setSelectedItems }) {
 						<input type='checkbox' checked />
 						<p>{selectedItems.length} Selected</p>
 					</div>
-					<p style={{ color: 'red', textDecoration: 'underline' }}>
+					<button
+						onClick={handleDelete}
+						style={{
+							color: 'red',
+							textDecoration: 'underline',
+							background: 'none',
+							border: 'none',
+							cursor: 'pointer',
+						}}
+					>
 						Delete All
-					</p>
+					</button>
 				</>
 			) : (
 				<h4>Draggable Gallery</h4>
