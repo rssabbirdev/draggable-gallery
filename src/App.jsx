@@ -7,7 +7,10 @@ function App() {
 	console.log(selectedItems);
 	return (
 		<div style={{ width: '80%', margin: 'auto' }}>
-			<Navbar />
+			<Navbar
+				selectedItems={selectedItems}
+				setSelectedItems={setSelectedItems}
+			/>
 			<GalleryContainer setSelectedItems={setSelectedItems} />
 		</div>
 	);

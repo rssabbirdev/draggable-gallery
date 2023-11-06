@@ -10,14 +10,14 @@ export default function GalleryItem({ item, index, setSelectedItems }) {
 		transform: CSS.Transform.toString(transform),
 		transition,
 	};
-	const selectFn = (event,selectedItem) => {
+	const selectFn = (event) => {
 		if (event.target.checked) {
 			setSelectedItems(selectedItems => {
-				return [...selectedItems, selectedItem]
+				return [...selectedItems, event.target.name]
 			})
 		} else {
 			setSelectedItems(selectedItems => {
-				const leftItems = selectedItems.filter(i => i.id !== event.target.name);
+				const leftItems = selectedItems.filter(i => i !== event.target.name);
 				return [...leftItems]
 			})
 		}
@@ -33,7 +33,7 @@ export default function GalleryItem({ item, index, setSelectedItems }) {
 				// eslint-disable-next-line react/prop-types
 				name={item.id}
 				type='checkbox'
-				onChange={(event)=>selectFn(event,item)}
+				onChange={(event)=>selectFn(event)}
 			/>
 			<img
 				style={{ width: '100%' }}
