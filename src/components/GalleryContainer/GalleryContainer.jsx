@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import {
 	DndContext,
 	closestCenter,
@@ -20,7 +20,8 @@ export default function GalleryContainer({ setSelectedItems, selectedItems, item
 	
 	// with useMemo we are separate ItemIds from array of objects
 	const itemIds = useMemo(() => items.map((item) => item.id), [items]);
-
+	
+	// dndKit sensors setting
 	const sensors = useSensors(
 		useSensor(MyPointerSensor),
 		useSensor(KeyboardSensor, {
@@ -55,6 +56,7 @@ export default function GalleryContainer({ setSelectedItems, selectedItems, item
 		</DndContext>
 	);
 
+	// define what to do, if draggable item drop on SortableContext for sorting and dragging
 	function handleDragEnd(event) {
 		const { active, over } = event;
 		if (active.id !== over.id) {
@@ -70,7 +72,7 @@ export default function GalleryContainer({ setSelectedItems, selectedItems, item
 }
 
 
-
+// Customize PointerSensor
 class MyPointerSensor extends PointerSensor {
 	static activators = [
 		{
@@ -90,6 +92,7 @@ class MyPointerSensor extends PointerSensor {
 	];
 }
 
+// define which elements don't get effected for dndkit 
 function isInteractiveElement(element) {
 	const interactiveElements = [
 		'button',

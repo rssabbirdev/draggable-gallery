@@ -1,32 +1,42 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import './GalleryItem.css';
-// eslint-disable-next-line react/prop-types
-export default function GalleryItem({ item, index, setSelectedItems, selectedItems }) {
+
+export default function GalleryItem({
+	item,
+	index,
+	setSelectedItems,
+	selectedItems,
+}) {
+	// destructure value form useSortable hook
 	const { attributes, listeners, setNodeRef, transform, transition } =
-		// eslint-disable-next-line react/prop-types
 		useSortable({ id: item.id });
+	
+	// set default style for draggable elements
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
 	};
+	
+	// Select function for items
 	const selectFn = (event) => {
-		console.log('Clicking on');
 		if (event.target.checked) {
-			setSelectedItems(selectedItems => {
-				return [...selectedItems, event.target.name]
-			})
+			setSelectedItems((selectedItems) => {
+				return [...selectedItems, event.target.name];
+			});
 		} else {
-			setSelectedItems(selectedItems => {
-				const leftItems = selectedItems.filter(i => i !== event.target.name);
-				return [...leftItems]
-			})
+			setSelectedItems((selectedItems) => {
+				const leftItems = selectedItems.filter(
+					(i) => i !== event.target.name
+				);
+				return [...leftItems];
+			});
 		}
 	};
 
 	return (
 		<div
-			className={`item ${index === 0 && 'first-item'} item`}
+			className={`item ${index === 0 && 'features-item'}`}
 			style={style}
 			ref={setNodeRef}
 			{...attributes}
@@ -39,11 +49,10 @@ export default function GalleryItem({ item, index, setSelectedItems, selectedIte
 						visibility: 'visible',
 					}
 				}
-				// eslint-disable-next-line react/prop-types
 				id={item.id}
-				// eslint-disable-next-line react/prop-types
 				name={item.id}
 				type='checkbox'
+				checked={selectedItems.includes(item.id)}
 				onChange={(event) => selectFn(event)}
 			/>
 			<img
@@ -53,7 +62,6 @@ export default function GalleryItem({ item, index, setSelectedItems, selectedIte
 					}
 				}
 				className={`itemImage `}
-				// eslint-disable-next-line react/prop-types
 				src={item.image_src}
 			/>
 		</div>

@@ -1,12 +1,17 @@
+
 import './Navbar.css';
 export default function Navbar({ selectedItems, setSelectedItems, setItems }) {
+	// delete selected items function
 	const handleDelete = () => {
 		setItems((items) => {
-			const leftItems = items.filter((item) => !selectedItems.includes(item.id));
+			const leftItems = items.filter(
+				(item) => !selectedItems.includes(item.id)
+			);
 			return leftItems;
 		});
-		setSelectedItems([])
+		setSelectedItems([]);
 	};
+	
 	return (
 		<div
 			style={{
@@ -19,24 +24,26 @@ export default function Navbar({ selectedItems, setSelectedItems, setItems }) {
 			{selectedItems.length > 0 ? (
 				<>
 					<div style={{ display: 'flex', gap: '3px' }}>
-						<input type='checkbox' checked />
-						<h4>{selectedItems.length} Selected</h4>
+						<input type='checkbox' checked={true} onChange={()=>setSelectedItems([])} />
+						<h3>{selectedItems.length} File Selected</h3>
 					</div>
 					<button
 						onClick={handleDelete}
 						style={{
 							color: 'red',
-							textDecoration: 'underline',
 							background: 'none',
 							border: 'none',
 							cursor: 'pointer',
+							fontSize:'1.1rem'
 						}}
 					>
-						Delete All
+						Delete files
 					</button>
 				</>
 			) : (
-				<h4>Draggable Gallery</h4>
+				<>
+					<h3>Draggable Gallery</h3>
+				</>
 			)}
 		</div>
 	);

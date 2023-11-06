@@ -3,6 +3,7 @@ import GalleryContainer from './components/GalleryContainer/GalleryContainer';
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
+	// initial data collection
 	const [items, setItems] = useState([
 		{
 			id: '01',
@@ -49,6 +50,7 @@ function App() {
 			image_src: 'images/image-11.jpeg',
 		},
 	]);
+	// selected items collection
 	const [selectedItems, setSelectedItems] = useState([]);
 	return (
 		<div style={{ width: '80%', margin: 'auto' }}>
