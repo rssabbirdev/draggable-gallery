@@ -1,5 +1,3 @@
-
-import './Navbar.css';
 export default function Navbar({ selectedItems, setSelectedItems, setItems }) {
 	// delete selected items function
 	const handleDelete = () => {
@@ -11,7 +9,7 @@ export default function Navbar({ selectedItems, setSelectedItems, setItems }) {
 		});
 		setSelectedItems([]);
 	};
-	
+
 	return (
 		<div
 			style={{
