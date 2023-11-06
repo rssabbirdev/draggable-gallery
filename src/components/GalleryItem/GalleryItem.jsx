@@ -1,8 +1,10 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-export default function GalleryItem({ item, index }) {
+// eslint-disable-next-line react/prop-types
+export default function GalleryItem({ item, index, setSelectedItems }) {
 	const { attributes, listeners, setNodeRef, transform, transition } =
+		// eslint-disable-next-line react/prop-types
 		useSortable({ id: item.id });
 	const style = {
 		transform: CSS.Transform.toString(transform),
@@ -10,7 +12,8 @@ export default function GalleryItem({ item, index }) {
 		width: '200px',
 		background: 'white',
 		margin: '10px',
-		borderRadius: '10px',
+        borderRadius: '10px',
+        cursor:'pointer'
 	};
 	const styleTwo = {
 		transform: CSS.Transform.toString(transform),
@@ -19,15 +22,23 @@ export default function GalleryItem({ item, index }) {
 		gridColumnEnd: 'span 2',
 		width: '410px',
 		background: 'white',
-		padding: '5px',
+		margin: '10px',
 		borderRadius: '10px',
+		cursor: 'pointer',
+    };
+	const selectFn = () => {
+        setSelectedItems((selectedItems) => {
+            return [...selectedItems, item]
+        })
 	};
 	return (
 		<img
+			onClick={() => selectFn()}
 			ref={setNodeRef}
-			style={index === 0 ? styleTwo : style}
+			style={index === 0 ? styleTwo : style }
 			{...attributes}
 			{...listeners}
+			// eslint-disable-next-line react/prop-types
 			src={item.image_src}
 		/>
 	);

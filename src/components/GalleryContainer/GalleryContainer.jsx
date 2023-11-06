@@ -15,7 +15,8 @@ import {
 } from '@dnd-kit/sortable';
 import GalleryItem from '../GalleryItem/GalleryItem';
 
-export default function GalleryContainer() {
+// eslint-disable-next-line react/prop-types
+export default function GalleryContainer({setSelectedItems}) {
 	const [items, setItems] = useState([
 		{
 			id: '01',
@@ -66,7 +67,7 @@ export default function GalleryContainer() {
 	const itemIds = useMemo(() => items.map((item) => item.id), [items]);
 	console.log(itemIds);
 	const sensors = useSensors(
-		useSensor(PointerSensor),
+		useSensor(MyPointerSensor),
 		useSensor(KeyboardSensor, {
 			coordinateGetter: sortableKeyboardCoordinates,
 		})
@@ -86,7 +87,12 @@ export default function GalleryContainer() {
 					}}
 				>
 					{items.map((item, index) => (
-						<GalleryItem item={item} key={item.id} index={index} />
+						<GalleryItem
+							setSelectedItems={setSelectedItems}
+							item={item}
+							key={item.id}
+							index={index}
+						/>
 					))}
 				</div>
 			</SortableContext>
@@ -101,9 +107,46 @@ export default function GalleryContainer() {
 					(item) => item.id === active.id
 				);
 				const newIndex = items.findIndex((item) => item.id === over.id);
-				console.log(oldIndex, newIndex);
 				return arrayMove(items, oldIndex, newIndex);
 			});
 		}
 	}
+}
+
+
+
+class MyPointerSensor extends PointerSensor {
+	static activators = [
+		{
+			eventName: 'onPointerDown',
+			handler: ({ nativeEvent: event }) => {
+				if (
+					!event.isPrimary ||
+					event.button !== 0 ||
+					isInteractiveElement(event.target)
+				) {
+					return false;
+				}
+
+				return true;
+			},
+		},
+	];
+}
+
+function isInteractiveElement(element) {
+	const interactiveElements = [
+		'button',
+		'input',
+		'textarea',
+		'select',
+		'option',
+		'img'
+	];
+
+	if (interactiveElements.includes(element.tagName.toLowerCase())) {
+		return true;
+	}
+
+	return false;
 }
