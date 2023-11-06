@@ -11,7 +11,10 @@ function App() {
 				selectedItems={selectedItems}
 				setSelectedItems={setSelectedItems}
 			/>
-			<GalleryContainer setSelectedItems={setSelectedItems} />
+			<GalleryContainer
+				setSelectedItems={setSelectedItems}
+				selectedItems={selectedItems}
+			/>
 		</div>
 	);
 }

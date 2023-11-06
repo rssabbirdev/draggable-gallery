@@ -16,7 +16,7 @@ import {
 import GalleryItem from '../GalleryItem/GalleryItem';
 
 // eslint-disable-next-line react/prop-types
-export default function GalleryContainer({setSelectedItems}) {
+export default function GalleryContainer({ setSelectedItems, selectedItems }) {
 	const [items, setItems] = useState([
 		{
 			id: '01',
@@ -62,10 +62,10 @@ export default function GalleryContainer({setSelectedItems}) {
 			id: '11',
 			image_src: 'images/image-11.jpeg',
 		},
-    ]);
-    // with useMemo we are separate ItemIds from array of objects
+	]);
+	// with useMemo we are separate ItemIds from array of objects
 	const itemIds = useMemo(() => items.map((item) => item.id), [items]);
-	
+
 	const sensors = useSensors(
 		useSensor(MyPointerSensor),
 		useSensor(KeyboardSensor, {
@@ -88,6 +88,7 @@ export default function GalleryContainer({setSelectedItems}) {
 				>
 					{items.map((item, index) => (
 						<GalleryItem
+							selectedItems={selectedItems}
 							setSelectedItems={setSelectedItems}
 							item={item}
 							key={item.id}
