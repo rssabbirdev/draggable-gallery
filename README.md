@@ -1,8 +1,26 @@
-# React + Vite
+# Draggable Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Production Link
 
-Currently, two official plugins are available:
+https://draggable-gallery-ollyo-assignment.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+
+Install Draggable Gallery with yarn
+
+```bash
+  git clone https://github.com/rssabbirdev/draggable-gallery.git
+  cd my-project
+  yarn
+  yarn dev
+```
+
+This Draggable Gallery made with ReactJS and Dndkit
+#
+Here we are made a sortable and with draggable gallery using Dndkit toolkit
+
+### Screenshot - 1
+![image](/src//assets/Screenshot_44.png)
+
+### Screenshot - 2
+![image](/src//assets/Screenshot_44.png)
