@@ -23,4 +23,4 @@ Here we are made a sortable and with draggable gallery using Dndkit toolkit
 ![image](/src//assets/Screenshot_44.png)
 
 ### Screenshot - 2
-![image](/src//assets/Screenshot_44.png)
+![image](/src//assets/Screenshot_45.png)
