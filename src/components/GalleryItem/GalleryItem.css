@@ -1,0 +1,12 @@
+.item{
+    width: 200px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.first-item{
+    grid-row-start: span 2;
+    grid-column-end: span 2;
+    width: 410px;
+}

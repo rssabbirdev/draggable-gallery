@@ -65,7 +65,7 @@ export default function GalleryContainer({setSelectedItems}) {
     ]);
     // with useMemo we are separate ItemIds from array of objects
 	const itemIds = useMemo(() => items.map((item) => item.id), [items]);
-	console.log(itemIds);
+	
 	const sensors = useSensors(
 		useSensor(MyPointerSensor),
 		useSensor(KeyboardSensor, {
@@ -141,7 +141,6 @@ function isInteractiveElement(element) {
 		'textarea',
 		'select',
 		'option',
-		'img'
 	];
 
 	if (interactiveElements.includes(element.tagName.toLowerCase())) {

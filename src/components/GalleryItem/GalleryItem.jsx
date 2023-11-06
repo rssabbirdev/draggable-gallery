@@ -1,6 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-
+import './GalleryItem.css';
 // eslint-disable-next-line react/prop-types
 export default function GalleryItem({ item, index, setSelectedItems }) {
 	const { attributes, listeners, setNodeRef, transform, transition } =
@@ -9,37 +9,37 @@ export default function GalleryItem({ item, index, setSelectedItems }) {
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
-		width: '200px',
-		background: 'white',
-		margin: '10px',
-        borderRadius: '10px',
-        cursor:'pointer'
 	};
-	const styleTwo = {
-		transform: CSS.Transform.toString(transform),
-		transition,
-		gridRowStart: 'span 2',
-		gridColumnEnd: 'span 2',
-		width: '410px',
-		background: 'white',
-		margin: '10px',
-		borderRadius: '10px',
-		cursor: 'pointer',
-    };
-	const selectFn = () => {
-        setSelectedItems((selectedItems) => {
-            return [...selectedItems, item]
-        })
+	const selectFn = (event,selectedItem) => {
+		if (event.target.checked) {
+			setSelectedItems(selectedItems => {
+				return [...selectedItems, selectedItem]
+			})
+		} else {
+			setSelectedItems(selectedItems => {
+				const leftItems = selectedItems.filter(i => i.id !== event.target.name);
+				return [...leftItems]
+			})
+		}
 	};
+
 	return (
-		<img
-			onClick={() => selectFn()}
-			ref={setNodeRef}
-			style={index === 0 ? styleTwo : style }
-			{...attributes}
-			{...listeners}
-			// eslint-disable-next-line react/prop-types
-			src={item.image_src}
-		/>
+		<div
+			className={`item ${index === 0 && 'first-item'}`} style={style} ref={setNodeRef} {...attributes} {...listeners} >
+			<input
+				style={{ margin: '10px', position:'absolute' }}
+				// eslint-disable-next-line react/prop-types
+				id={item.id}
+				// eslint-disable-next-line react/prop-types
+				name={item.id}
+				type='checkbox'
+				onChange={(event)=>selectFn(event,item)}
+			/>
+			<img
+				style={{ width: '100%' }}
+				// eslint-disable-next-line react/prop-types
+				src={item.image_src}
+			/>
+		</div>
 	);
 }
