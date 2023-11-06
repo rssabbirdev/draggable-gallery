@@ -7,7 +7,7 @@ export default function GalleryItem({ item, index }) {
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
-		width: '150px',
+		width: '200px',
 		background: 'white',
 		margin: '10px',
 		borderRadius: '10px',
@@ -17,7 +17,7 @@ export default function GalleryItem({ item, index }) {
 		transition,
 		gridRowStart: 'span 2',
 		gridColumnEnd: 'span 2',
-		width: '300px',
+		width: '410px',
 		background: 'white',
 		padding: '5px',
 		borderRadius: '10px',
