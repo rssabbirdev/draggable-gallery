@@ -20,7 +20,7 @@ export default function Navbar({ selectedItems, setSelectedItems, setItems }) {
 				<>
 					<div style={{ display: 'flex', gap: '3px' }}>
 						<input type='checkbox' checked />
-						<p>{selectedItems.length} Selected</p>
+						<h4>{selectedItems.length} Selected</h4>
 					</div>
 					<button
 						onClick={handleDelete}
